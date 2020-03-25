@@ -6,6 +6,10 @@
         android:title="@string/cart"/>
     <item android:id="@+id/contact"
         android:title="@string/contact" />
+    <item android:id="@+id/location"
+        android:title="@string/location" />
+    <item android:id="@+id/sensors"
+        android:title="@string/sensors" />
     <item android:id="@+id/settings"
         android:title="@string/settings" />
 </menu>

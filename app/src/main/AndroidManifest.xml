@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.onlineshop">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +25,8 @@
         </activity>
         <activity android:name=".Item" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".SensorsActivity" />
+        <activity android:name=".LocationActivity" />
 
     </application>
 

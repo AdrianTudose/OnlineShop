@@ -2,9 +2,13 @@ package com.example.onlineshop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView list;
     ArrayAdapter<Item> adapter;
     ArrayList<Item> items;
+    private int FINE_LOCATION_PERMISSION = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.i("MainActivity","create");
         createList();
+        askPermissions();
     }
 
     void createList() {
@@ -120,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.login:
                 DialogFragment newFragment = new LoginDialog();
@@ -129,12 +136,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.contact:
                 return true;
+            case R.id.location:
+                intent = new Intent(this, LocationActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.sensors:
+                intent = new Intent(this, SensorsActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.settings:
-                /*getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.settings, new SettingsFragment())
-                        .commit();*/
-                Intent intent = new Intent(this, SettingsActivity.class);
+                intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -142,5 +153,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void askPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+        } else {
+            // Permission to access the location is missing. Show rationale and request permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    FINE_LOCATION_PERMISSION);
+        }
+    }
 
 }
