@@ -67,31 +67,31 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onRestart();
+        super.onStart();
         Log.i("MainActivity","start");
     }
 
     @Override
     protected void onResume() {
-        super.onRestart();
+        super.onResume();
         Log.i("MainActivity","resume");
     }
 
     @Override
     protected void onPause() {
-        super.onRestart();
+        super.onPause();
         Log.i("MainActivity","pause");
     }
 
     @Override
     protected void onStop() {
-        super.onRestart();
+        super.onStop();
         Log.i("MainActivity","stop");
     }
 
     @Override
     protected void onDestroy() {
-        super.onRestart();
+        super.onDestroy();
         Log.i("MainActivity","destroy");
     }
 
@@ -128,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.cart:
                 return true;
             case R.id.contact:
+                return true;
+            case R.id.settings:
+                /*getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.settings, new SettingsFragment())
+                        .commit();*/
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

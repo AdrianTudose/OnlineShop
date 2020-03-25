@@ -7,4 +7,5 @@
     <string name="Cart" />
     <string name="Contact" />
     <string name="login">Login</string>
+    <string name="settings">Settings</string>
 </resources>
